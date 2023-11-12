@@ -9,13 +9,16 @@ package proyectoeda;
  *
  * @author ALEJANDRO
  */
-public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
+class Main {
     public static void main(String[] args) {
-        // TODO code application logic here
+        Rasgo ojos = new Ojos("Negro");
+        Rasgo grupo = new TipoSangre("A");
+        Rasgo predisposicion = new PredisposicionCancer("SI");
+        Lista_individuo individuo1 = new Lista_individuo();
+        individuo1.agregarFrente(ojos);
+        individuo1.agregarFrente(grupo);
+        individuo1.agregarFrente(predisposicion);
+        individuo1.imprimir();
+        
     }
-    
 }

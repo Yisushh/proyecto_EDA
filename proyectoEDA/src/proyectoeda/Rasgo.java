@@ -1,4 +1,12 @@
 package proyectoeda;
 
-public class Rasgo {
+public abstract class Rasgo {
+    protected String rasgo;
+
+    public Rasgo(String rasgo) {
+        this.rasgo = rasgo;
+    }
+
+    @Override
+    public abstract String toString();
 }
