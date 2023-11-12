@@ -14,11 +14,14 @@ class Main {
         Rasgo ojos = new Ojos("Negro");
         Rasgo grupo = new TipoSangre("A");
         Rasgo predisposicion = new PredisposicionCancer("SI");
-        Lista_individuo individuo1 = new Lista_individuo();
+        Lista_individuo individuo1 = new Lista_individuo("A");
         individuo1.agregarFrente(ojos);
         individuo1.agregarFrente(grupo);
         individuo1.agregarFrente(predisposicion);
-        individuo1.imprimir();
-        
+
+        Cola_poblacion poblacion1 = new Cola_poblacion("P1");
+        poblacion1.encolar(individuo1);
+        poblacion1.imprimir();
+
     }
 }

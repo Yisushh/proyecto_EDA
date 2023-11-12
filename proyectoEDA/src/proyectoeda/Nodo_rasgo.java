@@ -1,6 +1,6 @@
 package proyectoeda;
 
-class Nodo_rasgo {
+public class Nodo_rasgo {
     public Rasgo rasgo;
     Nodo_rasgo sig;
 

@@ -1,10 +1,16 @@
 package proyectoeda;
 
 public class Lista_individuo {
-
+    String nombre;
     Nodo_rasgo lista;
     Nodo_rasgo primero;
     Nodo_rasgo ultimo;
+
+    public Lista_individuo(){
+    }
+    public Lista_individuo(String nombre){
+        this.nombre=nombre;
+    }
 
     public void agregarFrente(Rasgo n) {
         Nodo_rasgo temp = new Nodo_rasgo(n);
@@ -29,10 +35,9 @@ public class Lista_individuo {
     public void imprimir() {
         Nodo_rasgo actual = primero;
         while (actual != null) {
-            System.out.print(actual.rasgo.toString() + " ");
+            System.out.print(actual.rasgo.toString() + "  ");
             actual = actual.sig;
         }
-        System.out.println("");
     }
 
     public int contar() {
