@@ -67,7 +67,6 @@ class Main {
         for(int i=0;i< individuos.length;i++){
             poblacion1.encolar(individuos[i]);
         }
-        poblacion1.imprimir();
 
         System.out.println("--------");
 

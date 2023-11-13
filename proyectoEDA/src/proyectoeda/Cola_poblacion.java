@@ -17,7 +17,7 @@ public class Cola_poblacion {
         while (actual != null) {
             System.out.print("\t↳"+actual.individuo.nombre + "( ");
             actual.individuo.imprimir();
-            System.out.println(" )");
+            System.out.println(")");
             actual = actual.sig;
         }
         System.out.print("\t↳null");

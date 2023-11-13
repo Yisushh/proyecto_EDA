@@ -35,7 +35,7 @@ public class Lista_individuo {
     public void imprimir() {
         Nodo_rasgo actual = primero;
         while (actual != null) {
-            System.out.print(actual.rasgo.toString() + "  ");
+            System.out.print(actual.rasgo.toString() + " ");
             actual = actual.sig;
         }
     }

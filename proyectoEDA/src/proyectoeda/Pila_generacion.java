@@ -6,7 +6,7 @@
 package proyectoeda;
 
 public class Pila_generacion {
-    private Nodo_generacion cima;
+    private Nodo_poblacion cima;
     public String nombre;
 
     public Pila_generacion() {
@@ -23,7 +23,7 @@ public class Pila_generacion {
     }
 
     public void apilar(Cola_poblacion elemento) {
-        Nodo_generacion nuevoNodo = new Nodo_generacion(elemento);
+        Nodo_poblacion nuevoNodo = new Nodo_poblacion(elemento);
         nuevoNodo.sig = this.cima;
         this.cima = nuevoNodo;
     }
@@ -47,7 +47,7 @@ public class Pila_generacion {
     }
 
     public void imprimirPila() {
-        for(Nodo_generacion actual = this.cima; actual != null; actual = actual.sig) {
+        for(Nodo_poblacion actual = this.cima; actual != null; actual = actual.sig) {
             System.out.println(this.nombre + "[ ");
             actual.poblacion.imprimir();
             System.out.println(" ]");
