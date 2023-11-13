@@ -15,12 +15,12 @@ public class Cola_poblacion {
     public void imprimir() {
         Nodo_individuo actual = cima;
         while (actual != null) {
-            System.out.print(actual.individuo.nombre + "( ");
+            System.out.print("\t↳"+actual.individuo.nombre + "( ");
             actual.individuo.imprimir();
-            System.out.print(" ) ->");
+            System.out.println(" )");
             actual = actual.sig;
         }
-        System.out.print("null");
+        System.out.print("\t↳null");
         System.out.println();
     }
     public void encolar(Lista_individuo n) {
