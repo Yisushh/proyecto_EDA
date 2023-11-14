@@ -11,7 +11,7 @@ package proyectoeda;
  */
 class Main {
     public static void main(String[] args) {
-        Rasgo  ojos[] = {
+        Rasgo ojos[] = {
                 new Ojos("Negro"),
                 new Ojos("Azul"),
                 new Ojos("Verde"),
@@ -26,28 +26,28 @@ class Main {
                 new PredisposicionCancer("NO"),
                 new PredisposicionCancer("SI")
         };
-        //-------------------- Individuos
-        Lista_individuo individuo1 = new Lista_individuo("A");
+        // -------------------- Individuos
+        Lista_individuo individuo1 = new Lista_individuo("A","dominante");
         individuo1.agregarFrente(ojos[0]);
         individuo1.agregarFrente(gruposSangre[0]);
         individuo1.agregarFrente(predisposicion[0]);
 
-        Lista_individuo individuo2 = new Lista_individuo("B");
+        Lista_individuo individuo2 = new Lista_individuo("B","recesivo");
         individuo2.agregarFrente(ojos[1]);
         individuo2.agregarFrente(gruposSangre[1]);
         individuo2.agregarFrente(predisposicion[1]);
 
-        Lista_individuo individuo3 = new Lista_individuo("C");
+        Lista_individuo individuo3 = new Lista_individuo("C","recesivo");
         individuo3.agregarFrente(ojos[2]);
         individuo3.agregarFrente(gruposSangre[2]);
         individuo3.agregarFrente(predisposicion[0]);
 
-        Lista_individuo individuo4 = new Lista_individuo("D");
+        Lista_individuo individuo4 = new Lista_individuo("D","dominante");
         individuo4.agregarFrente(ojos[3]);
         individuo4.agregarFrente(gruposSangre[2]);
         individuo4.agregarFrente(predisposicion[0]);
 
-        Lista_individuo individuo5 = new Lista_individuo("E");
+        Lista_individuo individuo5 = new Lista_individuo("E","");
         individuo5.agregarFrente(ojos[1]);
         individuo5.agregarFrente(gruposSangre[2]);
         individuo5.agregarFrente(predisposicion[1]);
@@ -60,19 +60,18 @@ class Main {
                 individuo5
         };
 
-        //---------------------------------
-
+        // ---------------------------------
 
         Cola_poblacion poblacion1 = new Cola_poblacion("P1");
-        for(int i=0;i< individuos.length;i++){
+        for (int i = 0; i < individuos.length; i++) {
             poblacion1.encolar(individuos[i]);
         }
 
         System.out.println("--------");
 
-        Pila_generacion generacion1 = new Pila_generacion("G1");
-        generacion1.apilar(poblacion1);
-        generacion1.imprimirPila();
+        Pila_generacion generaciones = new Pila_generacion("G0");
+        generaciones.apilar(poblacion1);
+        generaciones.imprimirPila();
 
     }
 }

@@ -9,6 +9,8 @@ public class Pila_generacion {
     private Nodo_poblacion cima;
     public String nombre;
 
+    int n;
+
     public Pila_generacion() {
         this.cima = null;
     }
@@ -16,6 +18,7 @@ public class Pila_generacion {
     public Pila_generacion(String nombre) {
         this.nombre = nombre;
         this.cima = null;
+        this.n = 0;
     }
 
     public boolean estaVacia() {
@@ -34,6 +37,7 @@ public class Pila_generacion {
         } else {
             Cola_poblacion elementoDesapilado = this.cima.poblacion;
             this.cima = this.cima.sig;
+            this.n--;
             return elementoDesapilado;
         }
     }
@@ -55,4 +59,11 @@ public class Pila_generacion {
 
         System.out.println();
     }
+
+    public void reproducir(Lista_individuo a,Lista_individuo b){
+        //String numeroComoString = String.valueOf(this.n);
+        Cola_poblacion temp = new Cola_poblacion("G"+this.n);
+
+    }
+
 }

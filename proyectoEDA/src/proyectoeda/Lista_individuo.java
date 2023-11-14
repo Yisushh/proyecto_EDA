@@ -5,11 +5,13 @@ public class Lista_individuo {
     Nodo_rasgo lista;
     Nodo_rasgo primero;
     Nodo_rasgo ultimo;
+    String caracter;
 
     public Lista_individuo(){
     }
-    public Lista_individuo(String nombre){
+    public Lista_individuo(String nombre, String caracter){
         this.nombre=nombre;
+        this.caracter = caracter;
     }
 
     public void agregarFrente(Rasgo n) {
