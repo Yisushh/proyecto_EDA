@@ -9,7 +9,7 @@ public class Pila_generacion {
     private Nodo_poblacion cima;
     public String nombre;
 
-    public int n=0;
+    public int n = 0;
 
     public Pila_generacion() {
         this.cima = null;
@@ -49,14 +49,17 @@ public class Pila_generacion {
     }
 
     public void imprimirPila() {
+        System.out.println("PILA DE GENERACIONES {");
         for (Nodo_poblacion actual = this.cima; actual != null; actual = actual.sig) {
-            System.out.println(this.cima.poblacion.nombre + "[ ");
+            System.out.println("\t" + this.cima.poblacion.nombre + "[ ");
             actual.poblacion.imprimir();
-            System.out.println(" ]");
+            System.out.println("\t" + " ]\n");
         }
 
-        System.out.println();
+        System.out.println("}");
     }
+
+
     public int contarNodos() {
         int contador = 0;
         Nodo_poblacion actual = cima;
@@ -68,6 +71,7 @@ public class Pila_generacion {
 
         return contador;
     }
+
     public Pila_generacion copiarPila(Pila_generacion origen) {
         Pila_generacion nuevaPila = new Pila_generacion();
         Pila_generacion pilaTemporal = new Pila_generacion();
@@ -89,7 +93,7 @@ public class Pila_generacion {
 
     // -----Generar Hijo
     public Lista_individuo generarHijo(Lista_individuo padre1, Lista_individuo padre2) {
-        // Array de Rasgos de los padres
+        // Lista de Rasgos de los padres
         Rasgo[] ojosPadre = new Rasgo[2];
         Rasgo[] sangrePadre = new Rasgo[2];
         Rasgo[] predPadre = new Rasgo[2];
@@ -99,8 +103,12 @@ public class Pila_generacion {
         sangrePadre[1] = padre2.primero.sig.rasgo;
         predPadre[0] = padre1.ultimo.rasgo;
         predPadre[1] = padre2.ultimo.rasgo;
-        // Lista hijo para asignar los rasgos de los padres
-        Lista_individuo hijo = new Lista_individuo(padre1.nombre + padre2.nombre, "test");
+        // Random para el caracter del hijo
+        int ranCaracter = (int) (Math.random() * 2);
+        String[] caracterPadre = new String[2];
+        caracterPadre[0] = padre1.caracter;
+        caracterPadre[1] = padre2.caracter;
+        Lista_individuo hijo = new Lista_individuo(padre1.nombre + padre2.nombre, caracterPadre[ranCaracter]);
         // Logica para Rasgos de los hijos
         // Si hay rasgo dominante
         if (padre1.caracter == "dominante" && padre2.caracter != "dominante") {
@@ -118,13 +126,13 @@ public class Pila_generacion {
         }
         // Si codominante
         else if (padre1.caracter == "dominante" && padre2.caracter == "dominante") {
-            int ranHeredar = (int) (Math.random() * 2 );
+            int ranHeredar = (int) (Math.random() * 2);
             String ojosP1 = ojosPadre[0].cadenaRasgo();
             String ojosP2 = ojosPadre[1].cadenaRasgo();
             String sangreP1 = sangrePadre[0].cadenaRasgo();
             String sangreP2 = sangrePadre[1].cadenaRasgo();
-            Rasgo ojosHijo = new Ojos(ojosP1+"+"+ojosP2);
-            Rasgo sangreHijo = new TipoSangre(sangreP1+sangreP2);
+            Rasgo ojosHijo = new Ojos(ojosP1 + "+" + ojosP2);
+            Rasgo sangreHijo = new TipoSangre(sangreP1 + sangreP2);
             hijo.agregarFrente(ojosHijo);
             hijo.agregarFrente(sangreHijo);
             hijo.agregarFrente(predPadre[ranHeredar]);
@@ -154,23 +162,7 @@ public class Pila_generacion {
                 actual2 = actual2.sig;
             }
         }
-
-        // ESTO VA EN OTRO LUGAR (CREO)
-        //cola.encolar(hijo);
-        //Logica supervivencia
-        int muerte = (int)(Math.random()*10+1);
-        //Sobreviven los padres
-        if (padre1.supervivencia >= muerte){
-            padre1.supervivencia = padre1.supervivencia - 2;
-            // Se genera un hijo nuevo desde aca?
-            //generarHijo(padre1, padre2);
-        } else {
-            //Mueren los padres
-            //cola.decolar();
-            //cola.decolar();
-        }
         return hijo;
-
     }
 
     public Cola_poblacion reproducirPoblacion(Lista_individuo padre1, Lista_individuo padre2) {
@@ -179,37 +171,35 @@ public class Pila_generacion {
         Lista_individuo hijo = generarHijo(padre1, padre2);
         // Encolar el hijo
         nuevaPoblacion.encolar(hijo);
-        // Logica de supervivencia
-        // Random para la supervivencia
-        // int probSupervivencia = (int)(Math.random()*10+1);
-        // if (probSupervivencia < 8) {
-        // Se registra la generacion en la pila
-
-        // Nueva reproduccion
-        // generarHijo() + nuevoindice de supervivencia
-        // } else {
-        // Se borra de la cola los dos elementos del frente
-        // cola.decolar();
-        // cola.decolar();
-        // }
+        //Logica de supervivencia
+        int muerte = ((int) (Math.random() * 10 + 1)) * 10;
+        // int muerte = 10;
+        // Sobreviven los padres
+        if (padre1.supervivencia >= muerte) {
+            padre1.supervivencia -= 20;
+        }
+        // Mueren los padres
+        else {
+            nuevaPoblacion.decolar();
+            nuevaPoblacion.decolar();
+        }
         return nuevaPoblacion;
     }
 
     public void crearGeneracion() {
         Pila_generacion pilaTemp = this.copiarPila(this);
         Cola_poblacion temp = pilaTemp.cima.poblacion.copiarCola(this.cima.poblacion);
-        //Cola_poblacion temp = pilaTemp.cima.poblacion;
         Lista_individuo padre1 = temp.decolar();
         Lista_individuo padre2 = temp.decolar();
         Cola_poblacion generacion = reproducirPoblacion(padre1, padre2);
         this.apilar(generacion);
-        //generacion.nombre = "G"+String.valueOf(this.contarNodos());
         n++;
-        generacion.nombre = "G"+String.valueOf(this.n);
-        generacion.frente.individuo.supervivencia -= 20;
+        //generacion.nombre = "G" + String.valueOf(this.n);
+        generacion.nombre = "G";
     }
-    public void crearGeneraciones(int n){
-        for(int i=0;i<n;i++){
+
+    public void crearGeneraciones(int n) {
+        for (int i = 0; i < n; i++) {
             this.crearGeneracion();
         }
     }

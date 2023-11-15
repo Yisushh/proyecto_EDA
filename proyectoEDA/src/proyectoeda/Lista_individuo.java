@@ -6,7 +6,7 @@ public class Lista_individuo {
     Nodo_rasgo primero;
     Nodo_rasgo ultimo;
     String caracter;
-    double supervivencia = 100;
+    int supervivencia = 70;
 
     public Lista_individuo(){
     }

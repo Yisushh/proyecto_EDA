@@ -7,8 +7,9 @@ package proyectoeda;
 
 /**
  *
- * @author ALEJANDRO
+ * @author GRUPO 5
  */
+import java.util.Scanner;
 class Main {
     public static void main(String[] args) {
         Rasgo ojos[] = {
@@ -73,8 +74,18 @@ class Main {
         generaciones.apilar(poblacion1);
         generaciones.imprimirPila();
 
+
+        Scanner scanner = new Scanner(System.in);
+
+        // Solicitar al numero de generaciones nuevas
+        System.out.print("Ingresa un número entero para crear generaciones nuevas: ");
+
+        // Numero de generaciones
+        int cantidadGeneracionesNuevas = scanner.nextInt();
+
         System.out.println("--------");
-        generaciones.crearGeneraciones(2);
+        generaciones.crearGeneraciones(cantidadGeneracionesNuevas);
         generaciones.imprimirPila();
+        scanner.close();
     }
 }
