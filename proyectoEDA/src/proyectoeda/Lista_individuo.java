@@ -6,6 +6,7 @@ public class Lista_individuo {
     Nodo_rasgo primero;
     Nodo_rasgo ultimo;
     String caracter;
+    double supervivencia = 100;
 
     public Lista_individuo(){
     }
@@ -37,9 +38,10 @@ public class Lista_individuo {
     public void imprimir() {
         Nodo_rasgo actual = primero;
         while (actual != null) {
-            System.out.print(actual.rasgo.toString() + " ");
+            System.out.print("  "+actual.rasgo.toString() + " ");
             actual = actual.sig;
         }
+        System.out.print( "  Caracter:"+this.caracter+"  Supervivencia:"+this.supervivencia);
     }
 
     public int contar() {

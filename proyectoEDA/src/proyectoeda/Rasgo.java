@@ -9,4 +9,5 @@ public abstract class Rasgo {
 
     @Override
     public abstract String toString();
+    public abstract String cadenaRasgo();
 }

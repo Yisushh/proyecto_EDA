@@ -6,16 +6,17 @@ public class Cola_poblacion {
     Nodo_individuo frente;
     Nodo_individuo cima;
 
-    public Cola_poblacion(){
+    public Cola_poblacion() {
     }
-    public Cola_poblacion(String nombre){
-        this.nombre=nombre;
+
+    public Cola_poblacion(String nombre) {
+        this.nombre = nombre;
     }
 
     public void imprimir() {
         Nodo_individuo actual = cima;
         while (actual != null) {
-            System.out.print("\t↳"+actual.individuo.nombre + "( ");
+            System.out.print("\t↳" + actual.individuo.nombre + "( ");
             actual.individuo.imprimir();
             System.out.println(")");
             actual = actual.sig;
@@ -23,6 +24,25 @@ public class Cola_poblacion {
         System.out.print("\t↳null");
         System.out.println();
     }
+    public Cola_poblacion copiarCola(Cola_poblacion origen) {
+        Cola_poblacion nuevaCola = new Cola_poblacion();
+        Cola_poblacion colaTemporal = new Cola_poblacion();
+
+        // Copiar elementos de la cola de origen a la cola temporal y la nueva cola
+        while (!origen.estaVacia()) {
+            Lista_individuo individuo = origen.decolar();
+            colaTemporal.encolar(individuo);
+            nuevaCola.encolar(individuo);
+        }
+
+        // Restaurar la cola de origen desde la cola temporal
+        while (!colaTemporal.estaVacia()) {
+            origen.encolar(colaTemporal.decolar());
+        }
+
+        return nuevaCola;
+    }
+
     public void encolar(Lista_individuo n) {
         Nodo_individuo temp = new Nodo_individuo(n);
         if (frente == null) {
@@ -48,7 +68,7 @@ public class Cola_poblacion {
         } else {
             Nodo_individuo actual;
             actual = cima;
-            //si tengo un solo elemento
+            // si tengo un solo elemento
             if (actual.sig == null) {
                 elem = cima.individuo;
                 cima = frente = null;
@@ -63,8 +83,6 @@ public class Cola_poblacion {
         }
         return elem;
     }
-
-
 
     public void invertirCola() {
         Cola_poblacion temp = new Cola_poblacion();
@@ -107,5 +125,5 @@ public class Cola_poblacion {
     public Lista_individuo peek() {
         return frente.individuo;
     }
-}
 
+}
